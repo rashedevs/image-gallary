@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <div className="header">
       <h2>Image Gallary</h2>
-      <h6>your choosen images</h6>
+      <h4>Delete selected images</h4>
     </div>
   );
 };
