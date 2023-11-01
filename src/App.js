@@ -1,10 +1,9 @@
 import "./App.css";
-
+import Header from "./components/Header/Header";
 function App() {
   return (
     <div className="App">
-      <h1>Image Gallary</h1>
-      <p>For Ollyo</p>
+      <Header />
     </div>
   );
 }

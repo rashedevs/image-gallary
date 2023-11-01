@@ -1,0 +1,14 @@
+.header{
+    width: 100%;
+    color: rgb(198, 202, 223);
+    background-color: rgb(34, 32, 56);
+    padding: 5px;
+}
+.header h2{
+    margin-bottom: 2px;
+}
+.header h3{
+    margin-top: 0px;
+    font-family:cursive;
+    font-weight: 400;
+}
