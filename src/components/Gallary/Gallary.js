@@ -15,6 +15,7 @@ import "./Gallary.css";
 
 const Gallary = () => {
   const [imageFilenames, setImageFilenames] = useState([]);
+  const [showSelectBox, setShowSelectBox] = useState(false);
   const allImages = [
     img1,
     img2,
@@ -48,14 +49,29 @@ const Gallary = () => {
   }, []);
 
   return (
-    <div>
-      <div className="gallary-container">
-        {allImages.map((imgPath, index) => (
-          <div className={`grid-item${index === 0 ? " wide" : ""}`} key={index}>
-            <img src={imgPath} alt={`Pic ${index + 1}`} />
-          </div>
-        ))}
-      </div>
+    <div className="gallary-container">
+      {allImages.map(
+        (imgPath, index) => (
+          <>
+            <img
+              className={`grid-item${index === 0 ? " wide" : ""}`}
+              src={imgPath}
+              alt={`pic ${index + 1}`}
+            />
+          </>
+        )
+        // <div
+        //   className={`grid-item${index === 0 ? " wide" : ""} ${
+        //     showSelectBox ? "selected" : ""
+        //   }`}
+        //   onMouseEnter={() => setShowSelectBox(true)}
+        //   onMouseLeave={() => setShowSelectBox(false)}
+        //   key={index}
+        // >
+      )}
+      {/* <div className="add-item">
+        <img src="" alt={"Add New"} />
+      </div> */}
     </div>
   );
 };
