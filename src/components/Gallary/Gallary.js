@@ -11,7 +11,6 @@ import img9 from "../../assets/images/image-9.webp";
 import img10 from "../../assets/images/image-10.jpeg";
 import img11 from "../../assets/images/image-11.jpeg";
 
-import Image from "./../Image/Image";
 import "./Gallary.css";
 
 const Gallary = () => {
@@ -48,20 +47,14 @@ const Gallary = () => {
     loadImageFilenames();
   }, []);
 
-  //   console.log("image filenames", imageFilenames);
-
   return (
     <div>
       <div className="gallary-container">
-        <div className="image-container">
-          {/* <p>Feature Image Here</p> */}
-          {allImages.map((filename, index) => (
-            <Image key={index} filename={filename}></Image>
-          ))}
-          {/* {imageFilenames.map((filename, index) => (
-            <Image key={index} filename={filename}></Image>
-          ))} */}
-        </div>
+        {allImages.map((imgPath, index) => (
+          <div className={`grid-item${index === 0 ? " wide" : ""}`} key={index}>
+            <img src={imgPath} alt={`Pic ${index + 1}`} />
+          </div>
+        ))}
       </div>
     </div>
   );

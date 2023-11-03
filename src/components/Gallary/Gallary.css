@@ -1,15 +1,36 @@
 .gallary-container{
     display: grid;
-    /* grid-template-columns: 3fr 1fr; */
-    gap: 5px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px; /* Adjust the gap as needed */
+    padding: 20px 90px 20px 90px;
+
 }
-.image-container{
+/* .image-container{
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(5,1fr);
     gap: 10px;
     background-color: rgb(253, 246, 246);
+} */
+.grid-item{
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #000;
+border-radius: 5px;
 }
+.grid-item img{
+    height: 200px;
+    width: 200px;
+}
+.wide{
+    grid-row: span 2;
+    grid-column: span 2;
+    border-radius: 5px;
+}
+.wide img{
+    width: 400px !important;
+    height: 400px !important;
 
+}
 /* media query for mobile */
 @media screen and (max-width:640px){
     .gallary-container{
