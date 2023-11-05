@@ -15,8 +15,8 @@
 }
 
 .grid-item img{
-  width: 184px;
-  height: 184px;
+  width: 100%;
+  height: 100%;
   border-radius:7px;
 }
 
@@ -27,8 +27,8 @@
 }
 
 .wide img{
-  width: 385px;
-  height: 386px;
+  width: 100%;
+  height: 100%;
   border-radius: 7px;
 }
 
@@ -42,8 +42,8 @@
 }
  
 .grid-item .checkbox-container {
-  width: 186px;
-  height: 189px;
+  width: 100%;
+  height: 100%;
 }
 
 .wide .checkbox-container {
@@ -64,46 +64,57 @@
   border-radius: 7px;
 
 }
+.simple-card button{
+  border: none;
+  background: transparent;
+}
 .add-image{
   height: 40px;
   width: 50px;
 }
 
-/* .dotted-border {
-  border: 1px dotted #000; 
-  padding: 10px; 
-} */
 
 /* Media query for tablets (768px width and below) */
 @media (max-width: 768px) {
   .image-grid {
     grid-template-columns: repeat(3, 1fr); 
   }
-
-  .grid-item img {
-    width: 120px;
-    height: 120px;
+  .grid-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-
-  .grid-item .checkbox-container {
-    width: 122px;
-    height: 123px;
+  .grid-item .wide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+  }
+  .grid-item img {
+    width: 100%;
+    height: 100%;
   }
 }
 
 /* Media query for mobile phones (480px width and below) */
 @media (max-width: 480px) {
   .image-grid {
-    grid-template-columns: repeat(1, 1fr); 
+    grid-template-columns: repeat(2, 1fr); 
   }
-
+  .grid-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .grid-item .wide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+  }
   .grid-item img {
     width: 100%;
-    height: auto;
-  }
-
-  .grid-item .checkbox-container {
-    width: 100%;
+    height: 100%;
   }
 }
 

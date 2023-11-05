@@ -1,7 +1,15 @@
 import React from "react";
 import "./Header.css";
+import toast from "react-hot-toast";
 
 const Header = ({ value, checked, handleDelete }) => {
+  const confirmDelete = () =>
+    toast("Successfully deleted", {
+      style: {
+        backgroundColor: "#eb4634",
+        color: "#fff",
+      },
+    });
   const handleDeleteClick = () => {
     if (checked) {
       const elements = document.getElementsByClassName("checked-true");
@@ -11,6 +19,7 @@ const Header = ({ value, checked, handleDelete }) => {
       }
     }
     handleDelete(0);
+    confirmDelete();
   };
 
   return (

@@ -18,6 +18,7 @@ import img8 from "../../assets/images/image-8.webp";
 import img9 from "../../assets/images/image-9.webp";
 import img10 from "../../assets/images/image-10.jpeg";
 import img11 from "../../assets/images/image-11.jpeg";
+import toast, { Toaster } from "react-hot-toast";
 
 const imagePaths = [
   img1,
@@ -56,7 +57,13 @@ const Gallary = () => {
     updatedOrder.splice(toIndex, 0, movedImage);
     setImageOrder(updatedOrder);
   };
-
+  const notify = () =>
+    toast("Coming Soon, Thanks for being with Ollyo", {
+      style: {
+        backgroundColor: "#13a113",
+        color: "#fff",
+      },
+    });
   return (
     <DndProvider backend={HTML5Backend}>
       <Header
@@ -75,12 +82,11 @@ const Gallary = () => {
           ></DraggableImage>
         ))}
         <div className="simple-card">
-          <div>
+          <button onClick={notify}>
             <AiFillPicture className="add-image" />
-          </div>
-          <div>
-            <h4>Add Images</h4>
-          </div>
+            <Toaster />
+          </button>
+          <h4>Add Images</h4>
         </div>
       </div>
     </DndProvider>
