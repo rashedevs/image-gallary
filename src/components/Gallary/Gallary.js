@@ -1,3 +1,10 @@
+import DraggableImage from "../DraggableImage/DraggableImage";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import React, { useState } from "react";
+import { DndProvider } from "react-dnd";
+import Header from "../Header/Header";
+import "./Gallary.css";
+
 import img1 from "../../assets/images/image-1.webp";
 import img2 from "../../assets/images/image-2.webp";
 import img3 from "../../assets/images/image-3.webp";
@@ -10,52 +17,64 @@ import img9 from "../../assets/images/image-9.webp";
 import img10 from "../../assets/images/image-10.jpeg";
 import img11 from "../../assets/images/image-11.jpeg";
 
-import "./Gallary.css";
-import { useState } from "react";
-
+const imagePaths = [
+  img1,
+  img2,
+  img3,
+  img4,
+  img5,
+  img6,
+  img7,
+  img8,
+  img9,
+  img10,
+  img11,
+];
 const Gallary = () => {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [imageOrder, setImageOrder] = useState(imagePaths);
+  const [value, setValue] = useState(0);
+  const [checked, setChecked] = useState(false);
 
-  const allImages = [
-    img1,
-    img2,
-    img3,
-    img4,
-    img5,
-    img6,
-    img7,
-    img8,
-    img9,
-    img10,
-    img11,
-  ];
-
-  const handleMouseEnter = (index) => {
-    setHoveredIndex(index);
+  const handleCheckboxClick = (isSelected) => {
+    if (isSelected) {
+      setValue(value + 1);
+    } else {
+      setValue(value - 1);
+    }
+    setChecked(isSelected);
   };
 
-  const handleMouseLeave = () => {
-    setHoveredIndex(null);
+  const handleDelete = (val) => {
+    setValue(0);
+  };
+
+  const handleDrop = (fromIndex, toIndex) => {
+    const updatedOrder = [...imageOrder];
+    const [movedImage] = updatedOrder.splice(fromIndex, 1);
+    updatedOrder.splice(toIndex, 0, movedImage);
+    setImageOrder(updatedOrder);
   };
 
   return (
-    <div className="gallary-container">
-      {allImages.map((imgPath, index) => (
-        <div
-          key={index}
-          className={`grid-item${index === 0 ? " wide" : ""}`}
-          onMouseEnter={() => handleMouseEnter(index)}
-          onMouseLeave={handleMouseLeave}
-        >
-          <img src={imgPath} alt={`pic ${index + 1}`} />
-          {hoveredIndex === index && (
-            <div className="overlay">
-              <input type="checkbox" className="checkbox" />
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
+    <DndProvider backend={HTML5Backend}>
+      <Header
+        value={value}
+        checked={checked}
+        handleDelete={handleDelete}
+      ></Header>
+      <div className="image-grid">
+        {imageOrder.map((imgPath, index) => (
+          <DraggableImage
+            key={index}
+            imgPath={imgPath}
+            index={index}
+            onDrop={handleDrop}
+            onCheckboxClick={handleCheckboxClick}
+          ></DraggableImage>
+        ))}
+      </div>
+    </DndProvider>
   );
 };
+
 export default Gallary;
