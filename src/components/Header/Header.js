@@ -17,21 +17,10 @@ const Header = ({ value, checked, handleDelete }) => {
     <header className="app-header">
       <div className="header-left">
         <div></div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+        <div className="inner-content">
           {value > 0 ? (
             <React.Fragment>
-              <input
-                type="checkbox"
-                checked
-                style={{ height: "22px", width: "22px", marginRight: "10px" }}
-              />
-              {/* <span>{`   ${value}  "Files Selected"`}</span> */}
+              <input type="checkbox" checked className="imput-box" />
               <span>{`    ${value} File${value > 1 ? "s" : ""} Selected`}</span>
             </React.Fragment>
           ) : (

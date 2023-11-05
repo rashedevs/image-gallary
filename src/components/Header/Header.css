@@ -11,8 +11,8 @@
   }
   .header-left span,
   .header-right span {
-    text-decoration: none; /* Remove underlines from links */
-    color: #000; /* Set link text color to white */ 
+    text-decoration: none; 
+    color: #000; 
     font-size: 1.3rem;
     font-weight: 600;
 }
@@ -23,3 +23,67 @@
     cursor: pointer;
     font-size: 18px;
  }
+.input-box{
+    height: "22px";
+    width: "22px"; 
+    margin-right: 10px;
+}
+.inner-content{
+    display: "flex";
+    align-items: "center";
+    justify-content: "center";
+}
+
+
+/* Media query for tablets (768px width and below) */
+@media (max-width: 768px) {
+    .header-left {
+      padding-left: 8px; 
+    }
+  
+    .header-left span,
+    .header-right span {
+      font-size: 1.1rem; 
+    }
+  
+    .input-box {
+      height: 18px; 
+      width: 18px; 
+      margin-right: 8px; 
+    }
+  
+    .inner-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  
+  /* Media query for mobile phones (480px width and below) */
+  @media (max-width: 480px) {
+    .app-header {
+      padding: 10px 12px; 
+    }
+  
+    .header-left {
+      padding-left: 4px; 
+    }
+  
+    .header-left span,
+    .header-right span {
+      font-size: 1rem; 
+    }
+  
+    .input-box {
+      height: 16px; 
+      width: 16px; 
+      margin-right: 6px; 
+    }
+  
+    .inner-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  

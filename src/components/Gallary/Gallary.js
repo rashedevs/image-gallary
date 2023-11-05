@@ -2,6 +2,8 @@ import DraggableImage from "../DraggableImage/DraggableImage";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import React, { useState } from "react";
 import { DndProvider } from "react-dnd";
+import { AiFillPicture } from "react-icons/ai";
+
 import Header from "../Header/Header";
 import "./Gallary.css";
 
@@ -72,6 +74,14 @@ const Gallary = () => {
             onCheckboxClick={handleCheckboxClick}
           ></DraggableImage>
         ))}
+        <div className="simple-card">
+          <div>
+            <AiFillPicture className="add-image" />
+          </div>
+          <div>
+            <h4>Add Images</h4>
+          </div>
+        </div>
       </div>
     </DndProvider>
   );

@@ -1,6 +1,6 @@
 import { useDrag, useDrop } from "react-dnd";
 import React, { useState } from "react";
-// import "./DraggableImage.css";
+import "./DraggableImage.css";
 
 const DraggableImage = ({ imgPath, index, onDrop, onCheckboxClick }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -46,10 +46,7 @@ const DraggableImage = ({ imgPath, index, onDrop, onCheckboxClick }) => {
             type="checkbox"
             checked={isSelected}
             onChange={handleCheckboxClicked}
-            style={{
-              height: "25px",
-              width: "25px",
-            }}
+            className="check-box"
           />
         </div>
       )}
