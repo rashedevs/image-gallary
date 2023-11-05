@@ -16,6 +16,9 @@
     font-size: 1.3rem;
     font-weight: 600;
 }
+.input-box{
+    margin-right: 10px;
+}
  .header-right span 
  {
     padding-right: 24px;
@@ -23,11 +26,7 @@
     cursor: pointer;
     font-size: 18px;
  }
-.input-box{
-    height: "22px";
-    width: "22px"; 
-    margin-right: 10px;
-}
+
 .inner-content{
     display: "flex";
     align-items: "center";
@@ -47,8 +46,8 @@
     }
   
     .input-box {
-      height: 18px; 
-      width: 18px; 
+      height: 100%;
+      width: 100%;
       margin-right: 8px; 
     }
   
@@ -56,6 +55,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: medium;
     }
   }
   
@@ -84,6 +84,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: small;
     }
   }
   

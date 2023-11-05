@@ -25,7 +25,6 @@ const Header = ({ value, checked, handleDelete }) => {
   return (
     <header className="app-header">
       <div className="header-left">
-        <div></div>
         <div className="inner-content">
           {value > 0 ? (
             <React.Fragment>
