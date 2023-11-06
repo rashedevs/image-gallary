@@ -20,6 +20,7 @@ import img10 from "../../assets/images/image-10.jpeg";
 import img11 from "../../assets/images/image-11.jpeg";
 import toast, { Toaster } from "react-hot-toast";
 
+// Define the image paths
 const imagePaths = [
   img1,
   img2,
@@ -33,42 +34,82 @@ const imagePaths = [
   img10,
   img11,
 ];
+
 const Gallary = () => {
+  // Initialize state variables
   const [imageOrder, setImageOrder] = useState(imagePaths);
   const [value, setValue] = useState(0);
-  const [checked, setChecked] = useState(false);
+  const [checkedIndices, setCheckedIndices] = useState([]);
 
-  const handleCheckboxClick = (isSelected) => {
+  // Handle checkbox click and update checked indices
+  const handleCheckboxClick = (isSelected, index) => {
+    const updatedCheckedIndices = [...checkedIndices];
     if (isSelected) {
-      setValue(value + 1);
+      updatedCheckedIndices.push(index);
     } else {
-      setValue(value - 1);
+      const indexToRemove = updatedCheckedIndices.indexOf(index);
+      if (indexToRemove !== -1) {
+        updatedCheckedIndices.splice(indexToRemove, 1);
+      }
     }
-    setChecked(isSelected);
+    setCheckedIndices(updatedCheckedIndices);
+    setValue(updatedCheckedIndices.length);
   };
 
-  const handleDelete = (val) => {
+  // Handle the delete action
+  const handleDelete = () => {
+    // Filter out checked items from the imageOrder
+    const updatedOrder = imageOrder.filter(
+      (_, index) => !checkedIndices.includes(index)
+    );
+    setImageOrder(updatedOrder);
+    setCheckedIndices([]);
     setValue(0);
+    confirmDelete();
   };
 
+  // Handle image reordering
   const handleDrop = (fromIndex, toIndex) => {
     const updatedOrder = [...imageOrder];
     const [movedImage] = updatedOrder.splice(fromIndex, 1);
     updatedOrder.splice(toIndex, 0, movedImage);
     setImageOrder(updatedOrder);
+
+    // Update checked indices after reordering
+    const updatedCheckedIndices = checkedIndices.map((index) => {
+      if (index === fromIndex) return toIndex;
+      if (fromIndex < toIndex && index > fromIndex && index <= toIndex)
+        return index - 1;
+      if (fromIndex > toIndex && index >= toIndex && index < fromIndex)
+        return index + 1;
+      return index;
+    });
+    setCheckedIndices(updatedCheckedIndices);
   };
+
+  // Notify user about actions
   const notify = () =>
-    toast("Coming Soon, Thanks for being with Ollyo", {
+    toast("Coming Soon. Stay with Ollyo", {
       style: {
-        backgroundColor: "#13a113",
+        backgroundColor: "#27b82e",
         color: "#fff",
       },
     });
+
+  // Confirm deletion to the user
+  const confirmDelete = () =>
+    toast("Successfully deleted", {
+      style: {
+        backgroundColor: "#cf2819",
+        color: "#fff",
+      },
+    });
+
   return (
     <DndProvider backend={HTML5Backend}>
       <Header
         value={value}
-        checked={checked}
+        checked={checkedIndices.length > 0}
         handleDelete={handleDelete}
       ></Header>
       <div className="image-grid">
@@ -79,6 +120,7 @@ const Gallary = () => {
             index={index}
             onDrop={handleDrop}
             onCheckboxClick={handleCheckboxClick}
+            isChecked={checkedIndices.includes(index)}
           ></DraggableImage>
         ))}
         <div className="simple-card">

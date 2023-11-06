@@ -1,34 +1,15 @@
 import React from "react";
 import "./Header.css";
-import toast from "react-hot-toast";
 
 const Header = ({ value, checked, handleDelete }) => {
-  const confirmDelete = () =>
-    toast("Successfully deleted", {
-      style: {
-        backgroundColor: "#eb4634",
-        color: "#fff",
-      },
-    });
-  const handleDeleteClick = () => {
-    if (checked) {
-      const elements = document.getElementsByClassName("checked-true");
-
-      for (let i = 0; i < elements.length; i++) {
-        elements[i].style.display = "none";
-      }
-    }
-    handleDelete(0);
-    confirmDelete();
-  };
-
   return (
     <header className="app-header">
       <div className="header-left">
         <div className="inner-content">
+          {/* Display a checkbox and selected file count if value is greater than 0, otherwise display "Gallery" */}
           {value > 0 ? (
             <React.Fragment>
-              <input type="checkbox" checked className="imput-box" />
+              <input type="checkbox" checked className="input-box" />
               <span>{`    ${value} File${value > 1 ? "s" : ""} Selected`}</span>
             </React.Fragment>
           ) : (
@@ -37,9 +18,10 @@ const Header = ({ value, checked, handleDelete }) => {
         </div>
       </div>
       <div className="header-right">
+        {/* Display "Delete files" if value is greater than 0, otherwise display an empty span */}
         {value > 0 ? (
           <React.Fragment>
-            <span onClick={handleDeleteClick}>{`Delete file${
+            <span onClick={handleDelete}>{`Delete file${
               value > 1 ? "s" : ""
             }`}</span>
           </React.Fragment>

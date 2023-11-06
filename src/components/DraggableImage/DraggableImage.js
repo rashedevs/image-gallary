@@ -1,29 +1,40 @@
-import { useDrag, useDrop } from "react-dnd";
 import React, { useState } from "react";
+import { useDrag, useDrop } from "react-dnd";
 import "./DraggableImage.css";
 
-const DraggableImage = ({ imgPath, index, onDrop, onCheckboxClick }) => {
+const DraggableImage = ({
+  imgPath,
+  index,
+  onDrop,
+  onCheckboxClick,
+  isChecked,
+}) => {
+  // State for tracking hover and drag
   const [isHovered, setIsHovered] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
+
+  // Define the item type for drag-and-drop
   const ItemType = "IMAGE";
 
+  // Setup the drag-and-drop handler for dragging the image
   const [{ isDragging }, ref] = useDrag({
     type: ItemType,
     item: { index },
   });
 
+  // Handle mouse hover events
   const handleHover = (hovered) => {
     setIsHovered(hovered);
   };
 
+  // Setup the drop target for image reordering
   const [, drop] = useDrop({
     accept: ItemType,
     drop: (draggedItem) => onDrop(draggedItem.index, index),
   });
 
+  // Handle checkbox click and update the checked state
   const handleCheckboxClicked = () => {
-    setIsSelected(!isSelected);
-    onCheckboxClick(!isSelected);
+    onCheckboxClick(!isChecked, index);
   };
 
   return (
@@ -32,7 +43,7 @@ const DraggableImage = ({ imgPath, index, onDrop, onCheckboxClick }) => {
       onMouseLeave={() => handleHover(false)}
       ref={(node) => ref(drop(node))}
       className={`grid-item${index === 0 ? " wide" : ""} ${
-        isSelected ? "checked-true" : ""
+        isChecked ? "checked-true" : ""
       }`}
     >
       <img
@@ -40,11 +51,12 @@ const DraggableImage = ({ imgPath, index, onDrop, onCheckboxClick }) => {
         alt={`pic ${index + 1} ${isDragging ? "dragging" : ""}`}
       />
 
-      {(isHovered || isSelected) && (
+      {/* Display the checkbox if hovered or checked */}
+      {(isHovered || isChecked) && (
         <div className="checkbox-container">
           <input
             type="checkbox"
-            checked={isSelected}
+            checked={isChecked}
             onChange={handleCheckboxClicked}
             className="check-box"
           />
